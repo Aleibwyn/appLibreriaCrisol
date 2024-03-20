@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">appLibreria</string>
+
+    <string name="ht_email">Ingresa tu correo electrónico</string>
+    <string name="ht_password">Ingresa tu contraseña</string>
+    <string name="bt_login">Ingresar</string>
+    <string name="bt_register"><u>Regístrarse</u></string>
+    <string name="no_account_message">¿No tienes una cuenta?</string>
+
+    <string name="logo_description">Logo de la aplicación</string>
+
+</resources>
