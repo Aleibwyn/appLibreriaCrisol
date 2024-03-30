@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bggroup27"
     android:backgroundTintMode="screen"
+    android:clickable="false"
     tools:context=".login.SignUpActivity">
 
     <RelativeLayout
@@ -41,11 +42,12 @@
                 app:layout_constraintGuide_begin="35dp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/tilNombre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:hapticFeedbackEnabled="false"
+                android:hint="@string/tilNombre"
                 app:boxBackgroundMode="outline"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -58,13 +60,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
+                android:id="@+id/tilApellido"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:hint="@string/tilApellidos"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/tilNombre">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -73,13 +76,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/tilCorreo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:hint="@string/tilCorreo"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+                app:layout_constraintTop_toBottomOf="@+id/tilApellido">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -88,42 +92,47 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
+                android:id="@+id/tilContrasena"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:hint="@string/tilContrasena"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+                app:layout_constraintTop_toBottomOf="@+id/tilCorreo"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="hint" />
+                    android:hint="hint"
+                    android:inputType="text|textWebPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#DEB217"
-                android:text="Button"
+                android:text="@string/btnRegistrarse"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                app:layout_constraintTop_toBottomOf="@+id/tilContrasena" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvIngresa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="32dp"
+                android:clickable="true"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/btnRegistrar"
+                tools:text="@string/tvIngresa" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>

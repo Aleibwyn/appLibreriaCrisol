@@ -8,5 +8,11 @@
     <string name="no_account_message">¿No tienes una cuenta?</string>
 
     <string name="logo_description">Logo de la aplicación</string>
+    <string name="tilNombre">Ingrese su nombre</string>
+    <string name="tilApellidos">Ingrese su apellido</string>
+    <string name="tilCorreo">Ingrese su correo</string>
+    <string name="tilContrasena">Ingrese su contraseña</string>
+    <string name="btnRegistrarse">Registrarse</string>
+    <string name="tvIngresa">¿Ya tienes una cuenta? Ingresa</string>
 
 </resources>
