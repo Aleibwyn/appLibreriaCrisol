@@ -1,5 +1,6 @@
 package pe.edu.crisol.libreria.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import pe.edu.crisol.libreria.R
+import pe.edu.crisol.libreria.menu.MenuActivity
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivitySignUpBinding
@@ -25,6 +27,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnRegistrar.setOnClickListener {
             registerUser()
         }
+
     }
 
     // Método para registrar usuarios con Firebase
@@ -39,9 +42,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     if (task.isSuccessful) {
                         // Registro exitoso
                         Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        // Iniciar MenuActivity
+                        startActivity(Intent(applicationContext, LoginActivity::class.java))
                     } else {
                         // Registro fallido
-                        Toast.makeText(this, "Error en el registro con firebase", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener(this) { e ->
