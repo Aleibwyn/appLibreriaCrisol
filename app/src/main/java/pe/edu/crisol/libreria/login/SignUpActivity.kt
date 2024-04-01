@@ -1,67 +1,62 @@
 package pe.edu.crisol.libreria.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import pe.edu.crisol.libreria.databinding.ActivitySignUpBinding
 import android.widget.Toast
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import pe.edu.crisol.libreria.R
-import pe.edu.crisol.libreria.model.UsuarioVo
-import pe.edu.crisol.libreria.retrofit.RetrofitClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-
-
-class SignUpActivity : AppCompatActivity(), Callback<UsuarioVo>, View.OnClickListener {
+class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivitySignUpBinding
-    private val apiService = RetrofitClient.apiService
+
+    // Firebase api service
+    private lateinit var auth:FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnRegistrar.setOnClickListener(this)
-    }
-
-    override fun onResponse(call: Call<UsuarioVo>, response: Response<UsuarioVo>) {
-        if (response.isSuccessful) {
-            // Manejar una respuesta exitosa aquí
-            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-        } else {
-            // Manejar una respuesta con error aquí
-            Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show()
+        auth = Firebase.auth
+        binding.btnRegistrar.setOnClickListener {
+            registerUser()
         }
     }
 
-    override fun onFailure(call: Call<UsuarioVo>, t: Throwable) {
-        Toast.makeText(this, "Erro de conexion", Toast.LENGTH_SHORT).show()
+    // Método para registrar usuarios con Firebase
+    private fun registerUser() {
+        val nombre = binding.tilNombre.editText?.text.toString()
+        val apellido = binding.tilApellido.editText?.text.toString()
+        val correo = binding.tilCorreo.editText?.text.toString()
+        val contrasena = binding.tilContrasena.editText?.text.toString()
+        if (validarCampos()) {
+            auth.createUserWithEmailAndPassword(correo, contrasena)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Registro exitoso
+                        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // Registro fallido
+                        Toast.makeText(this, "Error en el registro con firebase", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener(this) { e ->
+                    // Manejar el error específico
+                    Toast.makeText(this, "Error en el registro: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
 
+        }
     }
+
 
     override fun onClick(v: View?) {
         // Lógica para manejar el clic en algún elemento de la interfaz de usuario
         when (v?.id) {
-            R.id.btnRegistrar -> registrarUsuario()
-        }
-    }
-
-    // Registro de usuario
-    private fun registrarUsuario() {
-        if (validarCampos()) {
-
-            val nombre = binding.tilNombre.editText?.text.toString()
-            val apellido = binding.tilApellido.editText?.text.toString()
-            val correo = binding.tilCorreo.editText?.text.toString()
-            val contrasena = binding.tilContrasena.editText?.text.toString()
-            val estado = 1 // Aquí puedes establecer el estado según sea necesario
-
-            val usuario = UsuarioVo(nombre, apellido, correo, contrasena, estado)
-
-            // Llama al método para registrar el usuario utilizando RetrofitClient
-            apiService.registrarUsuario(usuario).enqueue(this)
+            R.id.btnRegistrar -> registerUser()
         }
     }
 
