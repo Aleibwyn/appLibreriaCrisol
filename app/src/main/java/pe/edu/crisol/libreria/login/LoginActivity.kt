@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Toast
-import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.databinding.ActivityLoginBinding
-import pe.edu.crisol.libreria.menu.MenuActivity
+import pe.edu.crisol.libreria.menu.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -34,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         val validPassword = "Nga2814"
 
         if (email == validEmail && password == validPassword) {
-            startActivity(Intent(this, MenuActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         } else {
             Toast.makeText(this, "Credenciales incorrectas. Por favor, inténtalo de nuevo.", Toast.LENGTH_SHORT).show()
         }
