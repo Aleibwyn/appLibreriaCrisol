@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="pe.edu.crisol.libreria.HomeFragment"
+        android:label="@string/label_home_menu"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="pe.edu.crisol.libreria.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="pe.edu.crisol.libreria.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="pe.edu.crisol.libreria.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="pe.edu.crisol.libreria.ProfileFragment"
+        android:label="@string/label_profile_menu"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="pe.edu.crisol.libreria.MoreFragment"
+        android:label="@string/label_more_menu"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="pe.edu.crisol.libreria.ShoppingCartFragment"
+        android:label="@string/label_cart_menu"
+        tools:layout="@layout/fragment_shopping_cart" />
+</navigation>

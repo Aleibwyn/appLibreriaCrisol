@@ -10,5 +10,9 @@
     <string name="logo_description">Logo de la aplicación</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_home_menu">Home</string>
+    <string name="label_profile_menu">Profile</string>
+    <string name="label_cart_menu">Cart</string>
+    <string name="label_more_menu">More</string>
 
 </resources>

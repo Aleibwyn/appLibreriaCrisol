@@ -29,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isValidCredentials(email: String, password: String) {
-        val validEmail = "Rox"
-        val validPassword = "Nga2814"
+        val validEmail = ""
+        val validPassword = ""
 
         if (email == validEmail && password == validPassword) {
             startActivity(Intent(this, MainActivity::class.java))
