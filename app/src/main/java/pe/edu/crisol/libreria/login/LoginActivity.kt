@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.widget.Toast
 import pe.edu.crisol.libreria.databinding.ActivityLoginBinding
-import pe.edu.crisol.libreria.menu.MainActivity
+import pe.edu.crisol.libreria.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {

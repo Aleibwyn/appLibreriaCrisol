@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="pe.edu.crisol.libreria.HomeFragment"
+        android:name="pe.edu.crisol.libreria.fragment.HomeFragment"
         android:label="@string/label_home_menu"
         tools:layout="@layout/fragment_home">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="pe.edu.crisol.libreria.SearchFragment"
+        android:name="pe.edu.crisol.libreria.fragment.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="pe.edu.crisol.libreria.ResultFragment"
+        android:name="pe.edu.crisol.libreria.fragment.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action
@@ -34,22 +34,22 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="pe.edu.crisol.libreria.DetailsFragment"
+        android:name="pe.edu.crisol.libreria.fragment.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="pe.edu.crisol.libreria.ProfileFragment"
+        android:name="pe.edu.crisol.libreria.fragment.ProfileFragment"
         android:label="@string/label_profile_menu"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/moreFragment"
-        android:name="pe.edu.crisol.libreria.MoreFragment"
+        android:name="pe.edu.crisol.libreria.fragment.MoreFragment"
         android:label="@string/label_more_menu"
         tools:layout="@layout/fragment_more" />
     <fragment
         android:id="@+id/shoppingCartFragment"
-        android:name="pe.edu.crisol.libreria.ShoppingCartFragment"
+        android:name="pe.edu.crisol.libreria.fragment.ShoppingCartFragment"
         android:label="@string/label_cart_menu"
         tools:layout="@layout/fragment_shopping_cart" />
 </navigation>

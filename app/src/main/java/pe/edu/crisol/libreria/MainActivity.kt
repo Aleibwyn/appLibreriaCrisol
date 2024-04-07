@@ -1,4 +1,4 @@
-package pe.edu.crisol.libreria.menu
+package pe.edu.crisol.libreria
 
 import android.os.Bundle
 import android.view.View
@@ -24,6 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = binding.bottomNav
         bottomNav.setupWithNavController(navController)
+        val badge = bottomNav.getOrCreateBadge(R.id.shoppingCartFragment)
+        badge.isVisible =true
+        badge.number = 99
 
         navController.addOnDestinationChangedListener {
                 controller, destination, arguments ->
