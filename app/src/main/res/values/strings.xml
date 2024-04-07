@@ -14,5 +14,6 @@
     <string name="label_profile_menu">Profile</string>
     <string name="label_cart_menu">Cart</string>
     <string name="label_more_menu">More</string>
+    <string name="cover_book_description">Book Cover</string>
 
 </resources>
