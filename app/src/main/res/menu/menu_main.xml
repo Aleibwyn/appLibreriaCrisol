@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_person"
         android:title="@string/label_profile_menu" />
     <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
+    <item
         android:id="@+id/shoppingCartFragment"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/label_cart_menu" />

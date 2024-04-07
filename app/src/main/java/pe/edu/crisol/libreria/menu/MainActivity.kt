@@ -1,6 +1,7 @@
 package pe.edu.crisol.libreria.menu
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -21,6 +22,19 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHost.navController
 
-        binding.bottomNav.setupWithNavController(navController)
+        val bottomNav = binding.bottomNav
+        bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener {
+                controller, destination, arguments ->
+            when(destination.id) {
+                R.id.homeFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.profileFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.shoppingCartFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.moreFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.searchFragment -> bottomNav.visibility = View.VISIBLE
+                else -> bottomNav.visibility = View.GONE
+            }
+        }
     }
 }
