@@ -31,38 +31,38 @@
         <EditText
             android:id="@+id/htEmail"
             android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            android:ems="10"
+            android:layout_marginTop="16dp"
             android:background="@drawable/ht_login_radius"
-            android:textColor="@color/my_pale_gray"
-            android:textSize="12sp"
+            android:ems="10"
             android:hint="@string/ht_email"
             android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/my_pale_gray"
 
-            android:padding="15dp"/>
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/htPassword"
             android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            android:ems="10"
+            android:layout_marginTop="16dp"
             android:background="@drawable/ht_login_radius"
             android:drawableEnd="@drawable/ic_login_password"
-            android:textColor="@color/my_pale_gray"
-            android:textSize="12sp"
+            android:ems="10"
             android:hint="@string/ht_password"
             android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/my_pale_gray"
 
-            android:padding="15dp"/>
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btLogin"
             android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:background="@drawable/bt_login_radius"
