@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.MoreFragment">
+    tools:context=".view.fragment.MoreFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"

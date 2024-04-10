@@ -1,4 +1,4 @@
-package pe.edu.crisol.libreria
+package pe.edu.crisol.libreria.view
 
 import android.os.Bundle
 import android.view.View

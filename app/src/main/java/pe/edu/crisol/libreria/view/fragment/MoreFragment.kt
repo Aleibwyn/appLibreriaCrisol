@@ -1,4 +1,4 @@
-package pe.edu.crisol.libreria.fragment
+package pe.edu.crisol.libreria.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
