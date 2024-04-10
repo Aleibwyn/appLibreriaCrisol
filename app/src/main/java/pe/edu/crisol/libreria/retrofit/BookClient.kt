@@ -18,7 +18,7 @@ object BookClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val searchService: BookService by lazy {
+    val bookService: BookService by lazy {
         buildRetrofit().create(BookService::class.java)
     }
 }

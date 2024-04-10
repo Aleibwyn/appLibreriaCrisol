@@ -15,7 +15,7 @@ class SearchRepository {
     val searchResponse get() = _searchResponse
     fun searchBooks(request: SearchRequest) : MutableLiveData<SearchResponse> {
         val call = BookClient
-            .searchService
+            .bookService
             .searchBooks(
                 request.q,
                 request.filter,
@@ -25,22 +25,6 @@ class SearchRepository {
                 request.printType,
                 request.projection
             )
-        call.enqueue(object : Callback<SearchResponse> {
-            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                _searchResponse.value = response.body()
-            }
-
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.e("Error", t.message.toString())
-            }
-        })
-        return searchResponse
-    }
-
-    fun searchByCategory(category: String) : MutableLiveData<SearchResponse> {
-        val call = BookClient
-            .searchService
-            .searchByCategory("subject:$category")
         call.enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 _searchResponse.value = response.body()

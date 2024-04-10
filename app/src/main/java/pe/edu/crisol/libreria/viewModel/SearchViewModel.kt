@@ -15,6 +15,10 @@ class SearchViewModel : ViewModel() {
     private var _searchResponse: MutableLiveData<SearchResponse> = repository.searchResponse
     val searchResponse: LiveData<SearchResponse> get() = _searchResponse
 
+    val bookId = MutableLiveData<String>("")
+    fun sendBookId(newBookId: String) {
+        bookId.value = newBookId
+    }
     fun searchBooks(q: String) {
         _searchResponse = repository.searchBooks(
             SearchRequest(

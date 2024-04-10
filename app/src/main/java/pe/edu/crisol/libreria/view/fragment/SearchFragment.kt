@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.view.adapters.BookAdapter
 import pe.edu.crisol.libreria.databinding.FragmentSearchBinding
+import pe.edu.crisol.libreria.view.fragment.SearchFragmentDirections
 import pe.edu.crisol.libreria.viewModel.SearchViewModel
-import retrofit2.Retrofit
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -41,9 +43,15 @@ class SearchFragment : Fragment() {
 
         viewModel.searchResponse.observe(viewLifecycleOwner, Observer { newValue ->
             if (newValue?.items!=null)
-                booksRecyclerView.adapter = BookAdapter(newValue.items)
+                booksRecyclerView.adapter = BookAdapter(newValue.items, viewModel)
         })
 
+        viewModel.bookId.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(it)
+                view.findNavController().navigate(action)
+            }
+        })
 
         searchView.editText.setOnEditorActionListener { v, actionId, event ->
             viewModel.searchBooks(searchView.text.toString())

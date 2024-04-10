@@ -15,5 +15,7 @@
     <string name="label_cart_menu">Cart</string>
     <string name="label_more_menu">More</string>
     <string name="cover_book_description">Book Cover</string>
+    <string name="add_to_cart_value">Add to Cart</string>
+    <string name="buy_now_value">Buy Now</string>
 
 </resources>

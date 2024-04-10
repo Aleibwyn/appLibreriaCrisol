@@ -11,8 +11,8 @@
         android:label="@string/label_home_menu"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment"/>
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -20,23 +20,18 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_resultFragment"
-            app:destination="@id/resultFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/resultFragment"
-        android:name="pe.edu.crisol.libreria.view.fragment.ResultFragment"
-        android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
-        <action
-            android:id="@+id/action_resultFragment_to_detailsFragment"
+            android:id="@+id/action_searchFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="pe.edu.crisol.libreria.view.fragment.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="book_id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="pe.edu.crisol.libreria.view.fragment.ProfileFragment"

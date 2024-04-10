@@ -40,17 +40,21 @@ class HomeFragment : Fragment() {
 
 
     private fun loadAll() {
-        viewModel.loadCategory("Computers").observe( viewLifecycleOwner, Observer { response ->
-            binding.carouselRecyclerView.adapter = BookCarouselAdapter(response.items)
+        viewModel.loadCategory("computers").observe( viewLifecycleOwner, Observer { response ->
+            if (response!=null)
+                binding.carouselRecyclerView.adapter = BookCarouselAdapter(response.items)
         })
         viewModel.loadCategory("Fiction").observe( viewLifecycleOwner, Observer { response ->
-            binding.carouselRecyclerView2.adapter = BookCarouselAdapter(response.items)
+            if (response!=null)
+                binding.carouselRecyclerView2.adapter = BookCarouselAdapter(response.items)
         })
         viewModel.loadCategory("Science").observe( viewLifecycleOwner, Observer { response ->
-            binding.carouselRecyclerView3.adapter = BookCarouselAdapter(response.items)
+            if (response!=null)
+                binding.carouselRecyclerView3.adapter = BookCarouselAdapter(response.items)
         })
         viewModel.loadCategory("History").observe( viewLifecycleOwner, Observer { response ->
-            binding.carouselRecyclerView4.adapter = BookCarouselAdapter(response.items)
+            if (response!=null)
+                binding.carouselRecyclerView4.adapter = BookCarouselAdapter(response.items)
         })
     }
     override fun onDestroyView() {
