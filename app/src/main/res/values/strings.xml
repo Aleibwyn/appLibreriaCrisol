@@ -14,8 +14,10 @@
     <string name="label_profile_menu">Profile</string>
     <string name="label_cart_menu">Cart</string>
     <string name="label_more_menu">More</string>
+    <string name="label_details">Details</string>
     <string name="cover_book_description">Book Cover</string>
     <string name="add_to_cart_value">Add to Cart</string>
     <string name="buy_now_value">Buy Now</string>
+    <string name="label_search_menu">Search</string>
 
 </resources>

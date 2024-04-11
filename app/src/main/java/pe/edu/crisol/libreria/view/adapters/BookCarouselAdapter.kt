@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.crisol.libreria.databinding.ItemBookCarouselBinding
 import pe.edu.crisol.libreria.model.Book
-class BookCarouselAdapter(private val booksByCategory: List<Book>): RecyclerView.Adapter<BookCarouselAdapter.ViewHolder>() {
+import pe.edu.crisol.libreria.viewModel.HomeViewModel
+import pe.edu.crisol.libreria.viewModel.SearchViewModel
+
+class BookCarouselAdapter(private val booksByCategory: List<Book>, private val searchViewModel: SearchViewModel): RecyclerView.Adapter<BookCarouselAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemBookCarouselBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
@@ -27,7 +30,9 @@ class BookCarouselAdapter(private val booksByCategory: List<Book>): RecyclerView
                         .load(volumeInfo.imageLinks.thumbnail)
                         .into(binding.carouselImageView)
                 }
-
+                itemView.setOnClickListener {
+                    searchViewModel.sendBookId(id)
+                }
             }
         }
     }

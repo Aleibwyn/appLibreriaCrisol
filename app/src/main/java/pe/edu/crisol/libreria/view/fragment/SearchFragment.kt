@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.view.adapters.BookAdapter
@@ -33,7 +36,6 @@ class SearchFragment : Fragment() {
         //Setup SearchView and SearchBar
         val searchBar = binding.searchBar
         val searchView = binding.searchView
-
         searchView.setupWithSearchBar(searchBar)
 
         val booksRecyclerView = binding.booksRecyclerView
@@ -64,7 +66,9 @@ class SearchFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        viewModel.bookId.value = ""
         super.onDestroyView()
         _binding = null
+
     }
 }

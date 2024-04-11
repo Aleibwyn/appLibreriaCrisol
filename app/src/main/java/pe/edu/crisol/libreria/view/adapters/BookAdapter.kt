@@ -43,7 +43,6 @@ class BookAdapter(private val books: List<Book>, private val searchViewModel: Se
                     }
 
                     itemView.setOnClickListener {
-                        Toast.makeText(it.context, volumeInfo.toString(), Toast.LENGTH_LONG).show()
                         searchViewModel.sendBookId(id)
                     }
                 }

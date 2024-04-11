@@ -14,7 +14,6 @@
         android:id="@+id/carousel_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/bt_login_radius" />
+        android:scaleType="center" />
 
 </com.google.android.material.carousel.MaskableFrameLayout>
