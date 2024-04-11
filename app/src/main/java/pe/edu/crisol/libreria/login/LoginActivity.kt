@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.databinding.ActivityLoginBinding
-import pe.edu.crisol.libreria.menu.MenuActivity
+import pe.edu.crisol.libreria.view.MainActivity
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         // Inicio de sesión exitoso
                         Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                         // Iniciar MenuActivity
-                        startActivity(Intent(applicationContext, MenuActivity::class.java))
+                        startActivity(Intent(applicationContext, MainActivity::class.java))
                         finish()
                     } else {
                         // Inicio de sesión fallido
@@ -56,8 +56,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
         }
     }
-
-
 
     // Validación de campos
     private fun validarCampos(): Boolean {

@@ -8,11 +8,25 @@
     <string name="no_account_message">¿No tienes una cuenta?</string>
 
     <string name="logo_description">Logo de la aplicación</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_home_menu">Home</string>
+    <string name="label_profile_menu">Profile</string>
+    <string name="label_cart_menu">Cart</string>
+    <string name="label_more_menu">More</string>
+    <string name="label_details">Details</string>
+    <string name="cover_book_description">Book Cover</string>
+    <string name="add_to_cart_value">Add to Cart</string>
+    <string name="buy_now_value">Buy Now</string>
+    <string name="label_search_menu">Search</string>
+
     <string name="tilNombre">Ingrese su nombre</string>
     <string name="tilApellidos">Ingrese su apellido</string>
     <string name="tilCorreo">Ingrese su correo</string>
     <string name="tilContrasena">Ingrese su contraseña</string>
     <string name="btnRegistrarse">Registrarse</string>
     <string name="tvIngresa">¿Ya tienes una cuenta? Ingresa</string>
+
 
 </resources>
