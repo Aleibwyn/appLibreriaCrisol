@@ -54,7 +54,8 @@ class DetailsFragment : Fragment(), MenuProvider {
         viewModel.searchBookById(bookId).observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 Glide.with(view.context)
-                    .load(it.volumeInfo.imageLinks.thumbnail).into(binding.bookCoverDetails)
+                    .load(it.volumeInfo.imageLinks.thumbnail)
+                    .into(binding.bookCoverDetails)
                 binding.bookTitleDetails.text = it.volumeInfo.title
                 binding.bookAuthorsDetails.text = it.volumeInfo.authors.joinToString()
                 binding.bookPriceDetails.text = "${it.saleInfo.listPrice.currencyCode} ${it.saleInfo.listPrice.amount}"
