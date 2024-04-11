@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("androidx.navigation.safeargs.kotlin")
+    //Google service gradle plugin
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -59,6 +61,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("com.google.android.engage:engage-core:1.4.0")
+/*
+    implementation("androidx.activity:activity:1.8.0")*/
+
+    //Import the firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-auth")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

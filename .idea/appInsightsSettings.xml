@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="pe.edu.crisol.libreria" />
+                  <option name="mobileSdkAppId" value="1:610320324738:android:d41d433c9b85161fd9bc9b" />
+                  <option name="projectId" value="applibreriacrisol-42797" />
+                  <option name="projectNumber" value="610320324738" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
