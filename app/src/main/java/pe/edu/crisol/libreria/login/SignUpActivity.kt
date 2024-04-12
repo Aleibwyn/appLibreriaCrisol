@@ -9,38 +9,64 @@ import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import pe.edu.crisol.libreria.R
+import pe.edu.crisol.libreria.model.User
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivitySignUpBinding
 
+
+    private lateinit var binding: ActivitySignUpBinding
     // Firebase api service
     private lateinit var auth:FirebaseAuth
-
+    private lateinit var database:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         auth = Firebase.auth
         binding.btnRegistrar.setOnClickListener {
-            registerUser()
+            registerAndSaveUser()
         }
 
     }
+    override fun onClick(v: View?) {
+        // Lógica para manejar el clic en algún elemento de la interfaz de usuario
+        when (v?.id) {
+            R.id.btnRegistrar -> registerAndSaveUser()
+        }
+    }
 
+    // Método para guardar datos de usuario en Firebase
+    private fun saveUserData(nombre: String, apellido: String, correo: String, contrasena: String) {
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        val nickname = binding.tilNombre.editText?.text.toString()
+
+        val user = User(nombre, apellido, correo, contrasena)
+        database.child(nickname).setValue(user).addOnSuccessListener {
+            clearFields()
+            Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
+        }
+
+    }
     // Método para registrar usuarios con Firebase
-    private fun registerUser() {
+    private fun registerAndSaveUser() {
         val nombre = binding.tilNombre.editText?.text.toString()
         val apellido = binding.tilApellido.editText?.text.toString()
         val correo = binding.tilCorreo.editText?.text.toString()
         val contrasena = binding.tilContrasena.editText?.text.toString()
+
         if (validarCampos()) {
             auth.createUserWithEmailAndPassword(correo, contrasena)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Registro exitoso
                         Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        // Guardar datos de usuario en Firebase
+                        saveUserData(nombre, apellido, correo, contrasena)
                         // Iniciar MenuActivity
                         startActivity(Intent(applicationContext, LoginActivity::class.java))
                     } else {
@@ -49,7 +75,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 .addOnFailureListener(this) { e ->
-                    // Manejar el error específico
+                    // Manejar de error especifico
                     Toast.makeText(this, "Error en el registro: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
 
@@ -57,12 +83,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    override fun onClick(v: View?) {
-        // Lógica para manejar el clic en algún elemento de la interfaz de usuario
-        when (v?.id) {
-            R.id.btnRegistrar -> registerUser()
-        }
-    }
 
     // Validación de correo
     private fun validarCorreo(correo: String): Boolean {
@@ -91,6 +111,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         }
         return true
     }
-
-
+    // Método para limpiar campos
+    private fun clearFields() {
+        binding.tilNombre.editText?.setText("")
+        binding.tilApellido.editText?.setText("")
+        binding.tilCorreo.editText?.setText("")
+        binding.tilContrasena.editText?.setText("")
+    }
 }
