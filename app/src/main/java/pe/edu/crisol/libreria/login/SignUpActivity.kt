@@ -10,7 +10,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import pe.edu.crisol.libreria.R
-import pe.edu.crisol.libreria.menu.MenuActivity
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivitySignUpBinding
