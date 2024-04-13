@@ -27,6 +27,12 @@
     <string name="tilContrasena">Ingrese su contraseña</string>
     <string name="btnRegistrarse">Registrarse</string>
     <string name="tvIngresa">¿Ya tienes una cuenta? Ingresa</string>
+    <string name="user_profile_img">User profile img</string>
+    <string name="tvNombre">Nombre de Usuario</string>
+    <string name="tvEmail">Correo del Usuario</string>
+    <string name="tvContrasena">Contraseña del Usuario</string>
+    <string name="tvNombrePerfil">Nombre de Perfil</string>
+    <string name="tvEmailPerfil">Email de Perfil</string>
 
 
 </resources>
