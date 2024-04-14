@@ -1,25 +1,22 @@
 package pe.edu.crisol.libreria.view.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import pe.edu.crisol.libreria.R
-import pe.edu.crisol.libreria.databinding.FragmentProfileBinding
-import pe.edu.crisol.libreria.model.User
-import java.io.File
+import pe.edu.crisol.libreria.databinding.FragmentWishListBinding
+import pe.edu.crisol.libreria.model.WishList
 
-class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
+class WishListFragment : Fragment() {
+    private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var auth : FirebaseAuth
@@ -29,28 +26,17 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        auth = FirebaseAuth.getInstance()
-        uid = auth.currentUser!!.uid
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-        if ( uid != null) {
-            getUsersData()
-        }
-        return view
+        _binding = FragmentWishListBinding.inflate(inflater, container, false)
+        return binding.root
     }
-    private fun getUsersData() {
+
+    /*private fun getWishListData() {
         databaseReference.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.getValue(User::class.java)
-                if (user != null) {
-                    binding.tvNombrePerfil.setText(user.nombre)
-                    binding.tvNombre.setText(user.nombre)
-                    binding.tvEmail.setText(user.correo)
-                    binding.tvEmailPerfil.setText(user.correo)
-                    binding.tvContrasena.setText(user.contrasena)
+                val wishList = snapshot.getValue(WishList::class.java)
+                if (wishList != null) {
+
+
                 } else {
                     Toast.makeText(context, "No se encontraron datos", Toast.LENGTH_SHORT).show()
                 }
@@ -58,7 +44,12 @@ class ProfileFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(context, "Error al obtener datos", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
+    }*/
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
