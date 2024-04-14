@@ -33,6 +33,7 @@
     <string name="tvContrasena">Contraseña del Usuario</string>
     <string name="tvNombrePerfil">Nombre de Perfil</string>
     <string name="tvEmailPerfil">Email de Perfil</string>
-
+    <string name="product_count">Total %d productos</string>
+    <string name="tv_total_price"><strong>S/%.2f</strong></string>
 
 </resources>

@@ -27,6 +27,7 @@ import pe.edu.crisol.libreria.databinding.FragmentDetailsBinding
 import pe.edu.crisol.libreria.model.WishList
 import pe.edu.crisol.libreria.viewModel.DetailsViewModel
 import pe.edu.crisol.libreria.viewModel.DetailsViewModelFactory
+import pe.edu.crisol.libreria.viewModel.ShoppingCartViewModel
 
 class DetailsFragment : Fragment(), MenuProvider {
 
@@ -37,6 +38,7 @@ class DetailsFragment : Fragment(), MenuProvider {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: DetailsViewModel
+    private lateinit var shoppingCartViewModel: ShoppingCartViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +47,8 @@ class DetailsFragment : Fragment(), MenuProvider {
         val view = binding.root
         val toolbar =binding.toolbar
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        shoppingCartViewModel = ViewModelProvider(requireActivity()).get(ShoppingCartViewModel::class.java)
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -60,16 +64,22 @@ class DetailsFragment : Fragment(), MenuProvider {
 
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser!!.uid
-        viewModel.searchBookById(bookId).observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+        viewModel.searchBookById(bookId).observe(viewLifecycleOwner, Observer {detailsResponse  ->
+            if (detailsResponse != null) {
+                val book = detailsResponse.toBook()
                 Glide.with(view.context)
-                    .load(it.volumeInfo.imageLinks.thumbnail)
+                    .load(book.volumeInfo.imageLinks.thumbnail)
                     .into(binding.bookCoverDetails)
-                binding.bookTitleDetails.text = it.volumeInfo.title
-                binding.bookAuthorsDetails.text = it.volumeInfo.authors.joinToString()
-                binding.bookPriceDetails.text = "${it.saleInfo.listPrice.currencyCode} ${it.saleInfo.listPrice.amount}"
+                binding.bookTitleDetails.text = book.volumeInfo.title
+                binding.bookAuthorsDetails.text = book.volumeInfo.authors.joinToString()
+                binding.bookPriceDetails.text = "${book.saleInfo.listPrice.currencyCode} ${book.saleInfo.listPrice.amount}"
                 binding.titleDescription.text = "About this book"
-                binding.contentDescription.text = Html.fromHtml(it.volumeInfo.description, Html.FROM_HTML_MODE_COMPACT)
+                binding.contentDescription.text = Html.fromHtml(book.volumeInfo.description, Html.FROM_HTML_MODE_COMPACT)
+
+                binding.addShoppingCart.setOnClickListener {
+                    shoppingCartViewModel.addToCart(book)
+                    Snackbar.make(view, "Book added to cart", Snackbar.LENGTH_SHORT).show()
+                }
             }
         })
 
