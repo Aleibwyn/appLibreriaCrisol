@@ -43,7 +43,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     // Método para guardar datos de usuario en Firebase
     private fun saveUserData(nombre: String, apellido: String, correo: String, contrasena: String) {
         database = FirebaseDatabase.getInstance().getReference("Users")
-        //val nickname = binding.tilNombre.editText?.text.toString()
         val userid = auth.currentUser?.uid
 
         val user = User(nombre, apellido, correo, contrasena)
@@ -55,8 +54,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         }else{
             Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
         }
-
-
     }
     // Método para registrar usuarios con Firebase
     private fun registerAndSaveUser() {
