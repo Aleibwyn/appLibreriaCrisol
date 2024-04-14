@@ -37,10 +37,8 @@ class ProfileFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         if ( uid != null) {
-
             getUsersData()
         }
-
         return view
     }
     private fun getUsersData() {
@@ -58,7 +56,6 @@ class ProfileFragment : Fragment() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                // Log the error and/or show a message to the user
                 Toast.makeText(context, "Error al obtener datos", Toast.LENGTH_SHORT).show()
             }
         })
