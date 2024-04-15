@@ -41,10 +41,19 @@
         android:id="@+id/moreFragment"
         android:name="pe.edu.crisol.libreria.view.fragment.MoreFragment"
         android:label="@string/label_more_menu"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shoppingCartFragment"
         android:name="pe.edu.crisol.libreria.view.fragment.ShoppingCartFragment"
         android:label="@string/label_cart_menu"
         tools:layout="@layout/fragment_shopping_cart" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="pe.edu.crisol.libreria.view.fragment.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
 </navigation>

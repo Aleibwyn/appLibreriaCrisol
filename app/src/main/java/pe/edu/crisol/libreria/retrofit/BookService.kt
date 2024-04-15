@@ -11,15 +11,28 @@ interface BookService {
     @GET("volumes")
     fun searchBooks(
         @Query("q") q: String,
+        @Query("filter") filter: String = "ebooks",
+        @Query("langRestrict") langRestrict: String = "es",
+        @Query("maxResults") maxResults: Int = 8,
+        @Query("orderBy") orderBy: String = "relevance",
+        @Query("printType") printType: String = "books",
+        @Query("projection") projection: String = "full"
+    ): Call<SearchResponse>
+
+    @GET("volumes/{bookId}")
+    fun searchBookById(
+        @Path("bookId") bookId: String
+    ): Call<DetailsResponse>
+
+
+/*    @GET("volumes")
+    fun searchBooks(
+        @Query("q") q: String,
         @Query("filter") filter: String,
         @Query("langRestrict") langRestrict: String,
         @Query("maxResults") maxResults: Int,
         @Query("orderBy") orderBy: String,
         @Query("printType") printType: String,
-        @Query("projection") projection: String) : Call<SearchResponse>
-
-    @GET("volumes/{bookId}")
-    fun searchBookById(
-        @Path("bookId") bookId: String
-    ) : Call<DetailsResponse>
+        @Query("projection") projection: String
+    ): Response<SearchResponse>*/
 }

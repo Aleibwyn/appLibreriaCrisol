@@ -1,12 +1,12 @@
 package pe.edu.crisol.libreria.model
 
-data class Book (
-    var kind: String,
-    var id: String,
-    var etag: String,
-    var selfLink: String,
-    var volumeInfo: VolumeInfo,
-    var saleInfo: SaleInfo,
-    var accessInfo: AccessInfo,
-    var searchInfo: SearchInfo
+data class Book(
+    val kind: String,
+    val id: String,
+    val etag: String,
+    val selfLink: String,
+    val volumeInfo: VolumeInfo,
+    val saleInfo: SaleInfo?,
+    val accessInfo: AccessInfo?,
+    val searchInfo: SearchInfo?
 )

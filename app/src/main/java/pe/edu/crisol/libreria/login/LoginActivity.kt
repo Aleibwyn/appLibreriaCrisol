@@ -68,6 +68,5 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         return true
     }
-
-
+    
 }

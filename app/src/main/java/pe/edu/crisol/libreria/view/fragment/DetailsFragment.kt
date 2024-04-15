@@ -19,8 +19,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.databinding.FragmentDetailsBinding
+import pe.edu.crisol.libreria.model.WishList
 import pe.edu.crisol.libreria.viewModel.DetailsViewModel
 import pe.edu.crisol.libreria.viewModel.DetailsViewModelFactory
 
@@ -30,6 +34,9 @@ class DetailsFragment : Fragment(), MenuProvider {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: DetailsViewModel
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private lateinit var uid: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +71,8 @@ class DetailsFragment : Fragment(), MenuProvider {
             }
         })
 
+        auth = FirebaseAuth.getInstance()
+        uid = auth.currentUser!!.uid
 
         return view
     }
@@ -75,10 +84,20 @@ class DetailsFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId) {
-            R.id.add_to_wishlist -> Snackbar.make(binding.root, "In Wishlist", Snackbar.LENGTH_SHORT).show()
+            R.id.add_to_wishlist -> saveWishList(uid, viewModel.bookId)
         }
         return false
     }
+
+    fun saveWishList(userid: String, bookId: String){
+        database = FirebaseDatabase.getInstance().getReference("WishList")
+        val wishList = WishList(userid, bookId)
+        database.child(userid).child(bookId).setValue(wishList).addOnSuccessListener {
+            Snackbar.make(binding.root, "In Wishlist", Snackbar.LENGTH_SHORT).show()
+        }
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

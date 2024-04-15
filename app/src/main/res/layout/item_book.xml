@@ -37,7 +37,7 @@
             android:breakStrategy="high_quality"
             android:ellipsize="end"
             android:maxLines="2"
-            tools:text="Text"
+            android:text="Unknown author"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             app:layout_constraintBottom_toTopOf="@+id/book_author"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/book_price"
@@ -64,11 +63,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/book_cover"
-            app:layout_constraintTop_toBottomOf="@+id/book_author" />
+            app:layout_constraintTop_toBottomOf="@+id/book_author"
+            tools:text="@{book.saleInfo.listPrice.amount.toString()}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

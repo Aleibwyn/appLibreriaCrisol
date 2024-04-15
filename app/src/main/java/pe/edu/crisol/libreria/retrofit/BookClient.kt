@@ -6,14 +6,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object BookClient {
+    private const val BASE_URL = "https://www.googleapis.com/books/v1/"
+
     private var retrofitClient = OkHttpClient.Builder()
-        .connectTimeout(2, TimeUnit.MINUTES)
-        .readTimeout(30, TimeUnit.MINUTES)
+        .connectTimeout(5, TimeUnit.MINUTES)
+        .readTimeout(10, TimeUnit.MINUTES)
         .writeTimeout(15, TimeUnit.MINUTES)
         .build()
 
     private fun buildRetrofit() = Retrofit.Builder()
-        .baseUrl("https://www.googleapis.com/books/v1/")
+        .baseUrl(BASE_URL)
         .client(retrofitClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

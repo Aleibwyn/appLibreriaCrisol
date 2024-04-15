@@ -1,9 +1,9 @@
 package pe.edu.crisol.libreria.repository
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import pe.edu.crisol.libreria.model.Book
 import pe.edu.crisol.libreria.retrofit.BookClient
-import pe.edu.crisol.libreria.retrofit.request.SearchRequest
 import pe.edu.crisol.libreria.retrofit.response.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -11,29 +11,41 @@ import retrofit2.Response
 
 
 class SearchRepository {
-    private val _searchResponse = MutableLiveData<SearchResponse>()
-    val searchResponse get() = _searchResponse
-    fun searchBooks(request: SearchRequest) : MutableLiveData<SearchResponse> {
-        val call = BookClient
-            .bookService
-            .searchBooks(
-                request.q,
-                request.filter,
-                request.langRestrict,
-                request.maxResults,
-                request.orderBy,
-                request.printType,
-                request.projection
-            )
+    fun searchBooksByCategory(category: String): LiveData<List<Book>> {
+        val bookList = MutableLiveData<List<Book>>()
+
+        val call = BookClient.bookService.searchBooks("subject:$category")
         call.enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                _searchResponse.value = response.body()
+                if (response.isSuccessful) {
+                    val bookListResponse = response.body()
+                    bookList.value = bookListResponse?.items ?: emptyList()
+                }
             }
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.e("Error", t.message.toString())
             }
         })
-        return searchResponse
+
+        return bookList
+    }
+
+    fun searchBooksByName(name: String): LiveData<List<Book>> {
+        val bookList = MutableLiveData<List<Book>>()
+
+        val call = BookClient.bookService.searchBooks(name)
+        call.enqueue(object : Callback<SearchResponse> {
+            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                if (response.isSuccessful) {
+                    val bookListResponse = response.body()
+                    bookList.value = bookListResponse?.items ?: emptyList()
+                }
+            }
+
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+            }
+        })
+
+        return bookList
     }
 }

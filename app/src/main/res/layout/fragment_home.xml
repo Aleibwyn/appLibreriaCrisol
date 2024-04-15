@@ -26,68 +26,73 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="16dp"
             tools:context=".view.fragment.HomeFragment">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fiction"
+                android:text="@string/book_category_1"
+                android:layout_marginHorizontal="16dp"
                 android:textAppearance="?attr/textAppearanceTitleMedium"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/carousel_recycler_view"
+                android:id="@+id/carousel1"
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
+                android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:layout_marginVertical="16dp"
-                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_carousel" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Juvenile Fiction"
+                android:text="@string/book_category_2"
+                android:layout_marginHorizontal="16dp"
                 android:textAppearance="?attr/textAppearanceTitleMedium"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/carousel_recycler_view2"
+                android:id="@+id/carousel2"
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
+                android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:layout_marginVertical="16dp"
-                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_carousel" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Science"
+                android:text="@string/book_category_3"
+                android:layout_marginHorizontal="16dp"
                 android:textAppearance="?attr/textAppearanceTitleMedium"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/carousel_recycler_view3"
+                android:id="@+id/carousel3"
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
+                android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:layout_marginVertical="16dp"
-                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
                 tools:listitem="@layout/item_book_carousel" />
 
             <TextView
+                android:text="@string/book_category_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Technology"
+                android:layout_marginHorizontal="16dp"
                 android:textAppearance="?attr/textAppearanceTitleMedium"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/carousel_recycler_view4"
+                android:id="@+id/carousel4"
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
+                android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:layout_marginVertical="16dp"
-                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_carousel" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -6,22 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
-import com.google.android.material.carousel.UncontainedCarouselStrategy
+import com.google.android.material.carousel.HeroCarouselStrategy
 import pe.edu.crisol.libreria.databinding.FragmentHomeBinding
+import pe.edu.crisol.libreria.model.Book
 import pe.edu.crisol.libreria.view.adapters.BookCarouselAdapter
 import pe.edu.crisol.libreria.viewModel.HomeViewModel
-import pe.edu.crisol.libreria.viewModel.SearchViewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeViewModel
-    private lateinit var searchViewModel: SearchViewModel
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,56 +32,44 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        val toolbar =binding.toolbar
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        val toolbar = binding.toolbar
+        (this.activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        searchViewModel.bookId.observe(viewLifecycleOwner, Observer {
-            if (it.isNotEmpty()) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
+        homeViewModel.navigateToDetails.observe(viewLifecycleOwner, Observer { bookId ->
+            bookId?.let {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(bookId)
                 view.findNavController().navigate(action)
+                homeViewModel.onDetailsNavigated()
             }
         })
 
-        loadAll()
+       setupObserver(homeViewModel.category1, binding.carousel1)
+       setupObserver(homeViewModel.category2, binding.carousel2)
+       setupObserver(homeViewModel.category3, binding.carousel3)
+       setupObserver(homeViewModel.category4, binding.carousel4)
 
         return view
     }
+    private fun setupObserver(categoryLiveData: LiveData<List<Book>>, carousel: RecyclerView) {
+        categoryLiveData.observe(viewLifecycleOwner, Observer { books ->
+            carousel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
 
-    private fun loadAll() {
-        viewModel.loadCategory("Fiction").observe( viewLifecycleOwner, Observer { response ->
-            if (response!=null) {
-                binding.carouselRecyclerView.setLayoutManager(CarouselLayoutManager(UncontainedCarouselStrategy()))
-                binding.carouselRecyclerView.adapter = BookCarouselAdapter(response.items, searchViewModel)
+            val adapter = BookCarouselAdapter { bookId ->
+                bookId?.let {
+                    homeViewModel.onBookClicked(bookId)
+                }
             }
-        })
-        viewModel.loadCategory("Juvenile+Fiction").observe( viewLifecycleOwner, Observer { response ->
-            if (response!=null) {
-                binding.carouselRecyclerView2.setLayoutManager(CarouselLayoutManager(UncontainedCarouselStrategy()))
 
-                binding.carouselRecyclerView2.adapter = BookCarouselAdapter(response.items, searchViewModel)
-            }
-        })
-        viewModel.loadCategory("Science").observe( viewLifecycleOwner, Observer { response ->
-            if (response!=null) {
-                binding.carouselRecyclerView3.setLayoutManager(CarouselLayoutManager(UncontainedCarouselStrategy()))
-                binding.carouselRecyclerView3.adapter = BookCarouselAdapter(response.items, searchViewModel)
-            }
-        })
-        viewModel.loadCategory("History").observe( viewLifecycleOwner, Observer { response ->
-            if (response!=null) {
-                binding.carouselRecyclerView4.setLayoutManager(CarouselLayoutManager(
-                    UncontainedCarouselStrategy()
-                ))
-                binding.carouselRecyclerView4.adapter = BookCarouselAdapter(response.items, searchViewModel)
-            }
+            carousel.adapter = adapter
+
+            adapter.submitList(books)
         })
     }
+
     override fun onDestroyView() {
-        searchViewModel.bookId.value = ""
         super.onDestroyView()
         _binding = null
     }

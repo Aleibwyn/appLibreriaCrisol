@@ -3,29 +3,50 @@ package pe.edu.crisol.libreria.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import pe.edu.crisol.libreria.model.Book
 import pe.edu.crisol.libreria.repository.SearchRepository
-import pe.edu.crisol.libreria.retrofit.request.SearchRequest
-import pe.edu.crisol.libreria.retrofit.response.SearchResponse
 
 class HomeViewModel : ViewModel() {
-    /*private val repository = SearchRepository()*/
-/*    val bookId = MutableLiveData<String>("")*/
 
-    fun loadCategory(category: String): LiveData<SearchResponse> {
-        return SearchRepository().searchBooks(
-            SearchRequest(
-                "subject:${category}",
-                "ebooks",
-                "",
-                20,
-                "relevance",
-                "books",
-                "full"
-            )
-        )
+    private val searchRepository = SearchRepository()
+
+    private val _category1 = MutableLiveData<List<Book>>()
+    val category1: LiveData<List<Book>> = _category1
+
+    private val _category2 = MutableLiveData<List<Book>>()
+    val category2: LiveData<List<Book>> = _category2
+
+    private val _category3 = MutableLiveData<List<Book>>()
+    val category3: LiveData<List<Book>> = _category3
+
+    private val _category4 = MutableLiveData<List<Book>>()
+    val category4: LiveData<List<Book>> = _category4
+
+    private val _navigateToDetails = MutableLiveData<String?>()
+    val navigateToDetails: LiveData<String?> = _navigateToDetails
+
+    init {
+        loadCategories()
     }
 
-/*    fun sendBookId(newBookId: String) {
-        bookId.value = newBookId
-    }*/
+    private fun loadCategories() {
+        loadCategory("Literary", _category1)
+        loadCategory("Fiction", _category2)
+        loadCategory("History", _category3)
+        loadCategory("Computers", _category4)
+    }
+
+    private fun loadCategory(category: String, liveData: MutableLiveData<List<Book>>) {
+        searchRepository.searchBooksByCategory(category).observeForever {
+            liveData.value = it
+        }
+    }
+
+    fun onBookClicked(bookId: String) {
+        _navigateToDetails.value = bookId
+    }
+
+    fun onDetailsNavigated() {
+        _navigateToDetails.value = null
+    }
 }

@@ -27,6 +27,10 @@
     <string name="tilContrasena">Ingrese su contraseña</string>
     <string name="btnRegistrarse">Registrarse</string>
     <string name="tvIngresa">¿Ya tienes una cuenta? Ingresa</string>
+    <string name="book_category_1">Juvenile Fiction</string>
+    <string name="book_category_2">Science</string>
+    <string name="book_category_3">Technology</string>
+    <string name="book_category_4">Fiction</string>
 
 
 </resources>
