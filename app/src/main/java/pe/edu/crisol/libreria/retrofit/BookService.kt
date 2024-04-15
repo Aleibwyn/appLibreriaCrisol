@@ -25,14 +25,19 @@ interface BookService {
     ): Call<DetailsResponse>
 
 
-/*    @GET("volumes")
-    fun searchBooks(
-        @Query("q") q: String,
-        @Query("filter") filter: String,
-        @Query("langRestrict") langRestrict: String,
-        @Query("maxResults") maxResults: Int,
-        @Query("orderBy") orderBy: String,
-        @Query("printType") printType: String,
-        @Query("projection") projection: String
-    ): Response<SearchResponse>*/
+    @GET("volumes")
+    fun searchBookByIsbn(
+        @Query("q") q: String
+    ): Call<SearchResponse>
+
+    /*    @GET("volumes")
+        fun searchBooks(
+            @Query("q") q: String,
+            @Query("filter") filter: String,
+            @Query("langRestrict") langRestrict: String,
+            @Query("maxResults") maxResults: Int,
+            @Query("orderBy") orderBy: String,
+            @Query("printType") printType: String,
+            @Query("projection") projection: String
+        ): Response<SearchResponse>*/
 }

@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/item_book"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
     </androidx.core.widget.NestedScrollView>
 
 

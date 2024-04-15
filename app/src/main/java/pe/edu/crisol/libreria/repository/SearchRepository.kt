@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import pe.edu.crisol.libreria.model.Book
 import pe.edu.crisol.libreria.retrofit.BookClient
+import pe.edu.crisol.libreria.retrofit.request.DetailsRequest
+import pe.edu.crisol.libreria.retrofit.response.DetailsResponse
 import pe.edu.crisol.libreria.retrofit.response.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,4 +50,27 @@ class SearchRepository {
 
         return bookList
     }
+
+    fun searchBookById(bookId: String): LiveData<Book> {
+        val book = MutableLiveData<Book>()
+        val call = BookClient.bookService.searchBookById(bookId)
+        call.enqueue(object : Callback<DetailsResponse> {
+            override fun onResponse(call: Call<DetailsResponse>, response: Response<DetailsResponse>) {
+                if (response.isSuccessful) {
+                    val bookResponse = response.body()
+                    bookResponse?.let {
+                        book.value = bookResponse.toBook()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DetailsResponse>, t: Throwable) {
+
+            }
+        })
+
+        return book
+    }
+
+
 }

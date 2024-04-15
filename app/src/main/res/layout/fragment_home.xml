@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/book_category_1"
                 android:layout_marginHorizontal="16dp"
-                android:textAppearance="?attr/textAppearanceTitleMedium"/>
+                android:textAppearance="?attr/textAppearanceTitleLarge"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel1"
                 android:layout_width="match_parent"
@@ -51,13 +51,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/book_category_2"
                 android:layout_marginHorizontal="16dp"
-                android:textAppearance="?attr/textAppearanceTitleMedium"/>
+                android:textAppearance="?attr/textAppearanceTitleLarge"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel2"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:orientation="horizontal"
                 android:layout_marginVertical="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_carousel" />
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/book_category_3"
                 android:layout_marginHorizontal="16dp"
-                android:textAppearance="?attr/textAppearanceTitleMedium"/>
+                android:textAppearance="?attr/textAppearanceTitleLarge"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel3"
                 android:layout_width="match_parent"
@@ -75,8 +76,8 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:layout_marginVertical="16dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
                 tools:listitem="@layout/item_book_carousel" />
 
             <TextView
@@ -84,13 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textAppearance="?attr/textAppearanceTitleMedium"/>
+                android:textAppearance="?attr/textAppearanceTitleLarge"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/carousel4"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:orientation="horizontal"
                 android:layout_marginVertical="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_carousel" />

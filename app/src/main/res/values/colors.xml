@@ -8,5 +8,6 @@
     <color name="my_pale_gray">#C7C2BB</color>
     <color name="my_snow_white">#F7F8F9</color>
     <color name="my_transparent">#00FFFFFF</color>
+    <color name="my_gray">#7F7F7F</color>
 
 </resources>

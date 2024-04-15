@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.crisol.libreria.databinding.ItemBookBinding
 import pe.edu.crisol.libreria.model.Book
-import pe.edu.crisol.libreria.retrofit.response.DetailsResponse
 
 
 class WishListAdapter(private val lista: List<Book>) : RecyclerView.Adapter<WishListAdapter.WishListViewHolder>(){

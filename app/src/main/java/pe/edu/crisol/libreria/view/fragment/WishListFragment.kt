@@ -1,12 +1,10 @@
 package pe.edu.crisol.libreria.view.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -23,10 +21,10 @@ import pe.edu.crisol.libreria.viewModel.WishListViewModel
 class WishListFragment : Fragment() {
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var uid: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,14 +46,14 @@ class WishListFragment : Fragment() {
                 val matches = regex.findAll(data)
                 val bookIds = matches.map { it.value }.toList()
                 wishListViewModel.fetchBooksByIds(bookIds)
-
             }
+
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Error al obtener datos", Toast.LENGTH_SHORT).show()
+
             }
         })
 
-        wishListViewModel.booksLiveData.observe(viewLifecycleOwner, Observer {
+        wishListViewModel.books.observe(viewLifecycleOwner, Observer {
             val adapter = WishListAdapter(it)
             binding.rvWishList.adapter = adapter
         })

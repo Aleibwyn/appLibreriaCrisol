@@ -1,6 +1,5 @@
 package pe.edu.crisol.libreria.view.adapters
 
-
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,11 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.crisol.libreria.databinding.ItemBookCarouselBinding
-import pe.edu.crisol.libreria.model.Book
-import pe.edu.crisol.libreria.view.BookDiffItemCallback
+import pe.edu.crisol.libreria.model.OtherBook
+import pe.edu.crisol.libreria.model.OtherBookDetails
+import pe.edu.crisol.libreria.view.OtherBookDiffItemCallback
 
 class BookCarouselAdapter(private val clickListener: (bookId: String) -> Unit) :
-    ListAdapter<Book, BookCarouselAdapter.ViewHolder>(BookDiffItemCallback()) {
+    ListAdapter<OtherBook, BookCarouselAdapter.ViewHolder>(OtherBookDiffItemCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,18 +26,19 @@ class BookCarouselAdapter(private val clickListener: (bookId: String) -> Unit) :
     }
 
     class ViewHolder(val binding: ItemBookCarouselBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Book, clickListener: (bookId: String) -> Unit) {
-            item.volumeInfo.title?.let {
+        fun bind(item: OtherBook, clickListener: (bookId: String) -> Unit) {
+            item.title?.let {
                 binding.bookTitle.text = it
             }
-            item.volumeInfo.imageLinks?.let {
+            item.primaryIsbn10?.let {
                 Glide.with(itemView.context)
-                    .load(it.thumbnail)
+                    .load(item.bookImage)
                     .into(binding.carouselImageView)
             }
 
             binding.root.setOnClickListener {
-                clickListener(item.id)
+                Log.i("isbn", item.primaryIsbn10)
+                clickListener(item.primaryIsbn10)
             }
         }
 

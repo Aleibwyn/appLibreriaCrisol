@@ -16,6 +16,8 @@ import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.HeroCarouselStrategy
 import pe.edu.crisol.libreria.databinding.FragmentHomeBinding
 import pe.edu.crisol.libreria.model.Book
+import pe.edu.crisol.libreria.model.OtherBook
+import pe.edu.crisol.libreria.model.OtherBookDetails
 import pe.edu.crisol.libreria.view.adapters.BookCarouselAdapter
 import pe.edu.crisol.libreria.viewModel.HomeViewModel
 
@@ -52,7 +54,7 @@ class HomeFragment : Fragment() {
 
         return view
     }
-    private fun setupObserver(categoryLiveData: LiveData<List<Book>>, carousel: RecyclerView) {
+    private fun setupObserver(categoryLiveData: LiveData<List<OtherBook>>, carousel: RecyclerView) {
         categoryLiveData.observe(viewLifecycleOwner, Observer { books ->
             carousel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import pe.edu.crisol.libreria.R
 import pe.edu.crisol.libreria.databinding.FragmentMoreBinding
 
 class MoreFragment : Fragment() {
@@ -24,6 +23,7 @@ class MoreFragment : Fragment() {
         binding.tvListaDeseos.setOnClickListener{
             val action = MoreFragmentDirections.actionMoreFragmentToWishListFragment()
             view.findNavController().navigate(action)
+
         }
     }
     override fun onDestroyView() {
