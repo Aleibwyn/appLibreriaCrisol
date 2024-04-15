@@ -27,10 +27,10 @@
     <string name="btnRegistrarse">Registrarse</string>
     <string name="tvIngresa">¿Ya tienes una cuenta? Ingresa</string>
 
-    <string name="book_category_1">Category 1</string>
-    <string name="book_category_2">Category 2</string>
-    <string name="book_category_3">Category 3</string>
-    <string name="book_category_4">Category 4</string>
+    <string name="book_category_1">Los más destacado</string>
+    <string name="book_category_2">Recientemente agregado</string>
+    <string name="book_category_3">Lo más vendido</string>
+    <string name="book_category_4">Libros infantiles</string>
 
 
     <string name="user_profile_img">User profile img</string>

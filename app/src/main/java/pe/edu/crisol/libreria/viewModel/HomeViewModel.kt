@@ -36,8 +36,8 @@ class HomeViewModel : ViewModel() {
     private fun loadCategories() {
         loadCategory("Combined Print and E-Book Fiction", _category1)
         loadCategory("Combined Print and E-Book Nonfiction", _category2)
-        loadCategory("Mass Market Paperback", _category3)
-        loadCategory("Manga", _category4)
+        loadCategory("Hardcover Advice", _category3)
+        loadCategory("Childrens Middle Grade E-Book", _category4)
     }
 
     private fun loadCategory(category: String, liveData: MutableLiveData<List<OtherBook>>) {
